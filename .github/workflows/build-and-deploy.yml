@@ -21,6 +21,6 @@ jobs:
           expires: 7d
           projectId: country-quiz-arn
           entryPoint: app
-          channeID: live
+          channelID: live
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
