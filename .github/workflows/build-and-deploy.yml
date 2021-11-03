@@ -4,6 +4,8 @@ name: Deploy to preview channel
 # events but only for the main branch
 on:
   push:
+    branches:
+      - main
 
 jobs:
   build_and_preview:
