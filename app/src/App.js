@@ -39,7 +39,7 @@ function App() {
 
 	return (
 		<div className="app">
-			<div className="header">THE FUN FLAG GAME</div>
+			<div className="header">THE COOL FLAG GAME</div>
 			<div className="middle">
 				<Route path="/">
 					<StartPage />
