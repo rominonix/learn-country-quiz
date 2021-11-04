@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useState } from "react";
 import * as R from "ramda";
 import { Link, Route, useLocation } from "wouter";
 import { customAlphabet } from "nanoid";
@@ -8,6 +7,7 @@ import * as utils from "./utils";
 import countries from "./countries";
 import winning from "../assets/winning.png";
 import dog from "../assets/dog.png";
+import "./feature.js";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -37,16 +37,13 @@ const analytics = getAnalytics(app);
 const db = getDatabase(app);
 
 function App() {
-  
+  const { improvedHeader } = JSON.parse(localStorage.getItem("featureflag"));
 
   return (
     <div className="app">
-      {ffImprovedScoring ? (
-        <div className="header">THE COOL FLAG GAME </div>
-      ) : (
-        "ajjaja"
-      )}
-      <div className="header">THE FUN NILU FLAG GAME </div>
+      <div className="header">
+        {improvedHeader.value ? "COUNTRY FLAG QUIZZ" : "THE FLAG GAME"}
+      </div>
       <div className="middle">
         <Route path="/">
           <StartPage />
