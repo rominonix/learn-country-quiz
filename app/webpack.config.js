@@ -5,11 +5,11 @@ import {merge} from 'webpack-merge'
 const __dirname = path.resolve()
 
 const isAnalyze = typeof process.env.BUNDLE_ANALYZE !== "undefined"
-[{
-    name: 'banner',
-    description: 'Banner shown on top of the page',
-    active: false
-}]
+// [{
+//     name: 'banner',
+//     description: 'Banner shown on top of the page',
+//     active: false
+// }]
 
 const common = {
 	entry: './src/index.js',
