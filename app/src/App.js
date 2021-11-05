@@ -89,6 +89,7 @@ const StartPage = () => {
       await update(ref(db), updates2);
     }
   };
+  
   return (
     <div className="page">
       <div className="st-flags">
@@ -148,6 +149,9 @@ const StartPage = () => {
         </div>
         <div className="f32">
           <div className={`flag bwa`}></div>
+        </div>
+		<div className="f32">
+          <div className={`flag mex`}></div>
         </div>
       </div>
       <div className="button btn-square" onClick={play}>
