@@ -7,6 +7,10 @@ const featureFlags = {
     value: false,
     desription: "This is tieScreen",
   },
+  minusScoring:{
+    value:false,
+    desription:"This is minusScoring"
+  },
   improvedHeader: {
     value: false,
     desription: "this is Header", 
@@ -28,3 +32,4 @@ if (localStorage.getItem("featureFlags")) {
 } else {
   localStorage.setItem("featureFlags", JSON.stringify(featureFlags));
 }
+
