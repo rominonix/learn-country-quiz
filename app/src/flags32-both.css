@@ -8,7 +8,7 @@
 .f32 ._England{background-position:0 -224px;}
 .f32 ._European_Union, .f32 .eu{background-position:0 -256px;}
 .f32 ._Islamic_Conference{background-position:0 -288px;}
-.f32 ._Kosovo{background-position:0 -320px;}
+.f32 ._Kosovo, .f32 .xkx{background-position:0 -320px;}
 .f32 ._NATO{background-position:0 -352px;}
 .f32 ._Northern_Cyprus{background-position:0 -384px;}
 .f32 ._Northern_Ireland{background-position:0 -416px;}
@@ -55,6 +55,7 @@
 .f32 .by, .f32 .blr {background-position: 0 -1728px;}
 .f32 .bz, .f32 .blz {background-position: 0 -1760px;}
 .f32 .ca, .f32 .can {background-position: 0 -1792px;}
+.f32 .cf, .f32 .caf {background-position: 0 -1824px;}
 .f32 .cd, .f32 .cod {background-position: 0 -1824px;}
 .f32 .cf, .f32 .rca {background-position: 0 -1856px;}
 .f32 .cg, .f32 .cog {background-position: 0 -1888px;}
@@ -118,6 +119,7 @@
 .f32 .id, .f32 .idn {background-position: 0 -3584px;}
 .f32 .mc, .f32 .mco {background-position: 0 -3584px;}
 .f32 .ie {background-position: 0 -3616px;}
+.f32 .il, .f32 .irl {background-position: 0 -3616px;}
 .f32 .il, .f32 .isr {background-position: 0 -3648px;}
 .f32 .im, .f32 .imn {background-position: 0 -3680px;}
 .f32 .in, .f32 .ind {background-position: 0 -3712px;}
@@ -184,6 +186,7 @@
 .f32 .nq, .f32 .atn {background-position: 0 -5536px;}
 .f32 .sj, .f32 .sjm {background-position: 0 -5536px;}
 .f32 .np, .f32 .npl {background-position: 0 -5568px;}
+.f32 .ci, .f32 .chi {background-position: 0 -5568px;}
 .f32 .nr, .f32 .nru {background-position: 0 -5600px;}
 .f32 .nz, .f32 .nzl {background-position: 0 -5632px;}
 .f32 .om, .f32 .omn {background-position: 0 -5664px;}
@@ -257,3 +260,6 @@
 .f32 .cw, .f32 .cuw {background-position: 0 -7840px;}
 .f32 .ss, .f32 .ssd {background-position: 0 -7872px;}
 .f32 .nu, .f32 .niu {background-position: 0 -7904px;}
+.f32 .mp, .f32 .mnp {background-position: 0 -7904px;}
+
+

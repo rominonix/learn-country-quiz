@@ -37,7 +37,7 @@ const analytics = getAnalytics(app);
 const db = getDatabase(app);
 
 function App() {
-  const { improvedHeader } = JSON.parse(localStorage.getItem("featureflag"));
+  const { improvedHeader } = JSON.parse(localStorage.getItem("featureFlags"));
 
   return (
     <div className="app">
@@ -64,6 +64,25 @@ function App() {
 const StartPage = () => {
   const [snapshot, loading, error] = useObject(ref(db, "nextGame"));
   const [location, setLocation] = useLocation();
+  const { improvedFlag } = JSON.parse(localStorage.getItem("featureFlags"));
+
+  const flags = Object.keys(countries).reduce(
+    (prev, current) => ({
+      ...prev,
+      [current.toLowerCase()]: countries[current],
+    }),
+    {}
+  );
+
+  const arrFlagsKeys = Object.keys(flags);
+
+  const randomArrFlag = []
+
+  while (arrFlagsKeys.length > 0) {
+	  let randomFlag = Math.floor(Math.random() * arrFlagsKeys.length)
+	  let pushRandomFlag = arrFlagsKeys.splice(randomFlag, 1)
+	  randomArrFlag.push(pushRandomFlag[0])	  
+  }
 
   if (loading) return <div className="fw6 fs5">Loading...</div>;
   const nextGame = snapshot.val();
@@ -89,71 +108,79 @@ const StartPage = () => {
       await update(ref(db), updates2);
     }
   };
-  
+
   return (
     <div className="page">
-      <div className="st-flags">
-        <div className="f32">
-          <div className={`flag aze`}></div>
+      {improvedFlag.value ? (
+        <div className="st-flags">
+          <div className="f32">
+            <div className={`flag aze`}></div>
+          </div>
+          <div className="f32">
+            <div className={`flag bih`}></div>
+          </div>
+          <div className="f32">
+            <div className={`flag brb`}></div>
+          </div>
+          <div className="f32">
+            <div className={`flag swe`}></div>
+          </div>
+          <div className="f32">
+            <div className={`flag bgd`}></div>
+          </div>
+          <div className="f32">
+            <div className={`flag bel`}></div>
+          </div>
+          <div className="f32">
+            <div className={`flag bfa`}></div>
+          </div>
+          <div className="f32">
+            <div className={`flag bgr`}></div>
+          </div>
+          <div className="f32">
+            <div className={`flag bhr`}></div>
+          </div>
+          <div className="f32">
+            <div className={`flag bdi`}></div>
+          </div>
+          <div className="f32">
+            <div className={`flag ben`}></div>
+          </div>
+          <div className="f32">
+            <div className={`flag bmu`}></div>
+          </div>
+          <div className="f32">
+            <div className={`flag brn`}></div>
+          </div>
+          <div className="f32">
+            <div className={`flag bol`}></div>
+          </div>
+          <div className="f32">
+            <div className={`flag bra`}></div>
+          </div>
+          <div className="f32">
+            <div className={`flag bhs`}></div>
+          </div>
+          <div className="f32">
+            <div className={`flag btn`}></div>
+          </div>
+          <div className="f32">
+            <div className={`flag fra`}></div>
+          </div>
+          <div className="f32">
+            <div className={`flag bwa`}></div>
+          </div>
         </div>
-        <div className="f32">
-          <div className={`flag bih`}></div>
+      ) : (
+        <div className="st-flags">
+          {randomArrFlag.map((flagKey) => (
+            <div className="f32" key={flagKey}>
+              <div className={`flag ${flagKey}`}></div>
+            </div>
+          ))}
         </div>
-        <div className="f32">
-          <div className={`flag brb`}></div>
-        </div>
-        <div className="f32">
-          <div className={`flag swe`}></div>
-        </div>
-        <div className="f32">
-          <div className={`flag bgd`}></div>
-        </div>
-        <div className="f32">
-          <div className={`flag bel`}></div>
-        </div>
-        <div className="f32">
-          <div className={`flag bfa`}></div>
-        </div>
-        <div className="f32">
-          <div className={`flag bgr`}></div>
-        </div>
-        <div className="f32">
-          <div className={`flag bhr`}></div>
-        </div>
-        <div className="f32">
-          <div className={`flag bdi`}></div>
-        </div>
-        <div className="f32">
-          <div className={`flag ben`}></div>
-        </div>
-        <div className="f32">
-          <div className={`flag bmu`}></div>
-        </div>
-        <div className="f32">
-          <div className={`flag brn`}></div>
-        </div>
-        <div className="f32">
-          <div className={`flag bol`}></div>
-        </div>
-        <div className="f32">
-          <div className={`flag bra`}></div>
-        </div>
-        <div className="f32">
-          <div className={`flag bhs`}></div>
-        </div>
-        <div className="f32">
-          <div className={`flag btn`}></div>
-        </div>
-        <div className="f32">
-          <div className={`flag fra`}></div>
-        </div>
-        <div className="f32">
-          <div className={`flag bwa`}></div>
-        </div>
-		<div className="f32">
-          <div className={`flag mex`}></div>
-        </div>
-      </div>
+      )}
+
       <div className="button btn-square" onClick={play}>
         Play
       </div>
