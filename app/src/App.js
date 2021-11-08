@@ -117,7 +117,7 @@ const StartPage = () => {
 
   return (
     <div className="page">
-      {improvedFlag.value ? (
+      {!improvedFlag.value ? (
         <div className="st-flags">
           <div className="f32">
             <div className={`flag aze`}></div>
