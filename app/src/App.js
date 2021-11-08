@@ -7,6 +7,8 @@ import * as utils from "./utils";
 import countries from "./countries";
 import winning from "../assets/winning.png";
 import dog from "../assets/dog.png";
+import tie from "../assets/—Pngtree—autumn tree falling leaves watercolor_5488586.png";
+
 import "./feature.js";
 
 // Import the functions you need from the SDKs you need
@@ -37,7 +39,8 @@ const analytics = getAnalytics(app);
 const db = getDatabase(app);
 
 function App() {
-  const { improvedHeader } = JSON.parse(localStorage.getItem("featureflag"));
+  const { improvedHeader } = JSON.parse(localStorage.getItem("featureFlags"));
+  
 
   return (
     <div className="app">
@@ -52,11 +55,14 @@ function App() {
           {(params) => {
             return (
               <GamePage gameId={params.gameId} playerId={params.playerId} />
-            );
-          }}
+              );
+            }}
         </Route>
       </div>
-      <div className="footer"></div>
+            
+      <div className="footer">
+      
+      </div>
     </div>
   );
 }
@@ -292,24 +298,40 @@ const QuickResults = ({ you, opponent }) => {
 };
 
 const ResultsPage = ({ gameId, playerId }) => {
+  
   const [snapshot, loading, error] = useObject(ref(db, `games/${gameId}`));
 
   if (loading) return <div className="fw6 fs5">Loading...</div>;
   const game = snapshot.val();
 
   const youKey = `player${playerId}`;
-  const opponentKey = `player${parseInt(playerId) === 1 ? 2 : 1}`;
+  const opponentKey = `player${parseInt(playerId) === 1 ? 2 : 1 }`;
 
-  const youWon = game.score[youKey] >= game.score[opponentKey];
+  const youWon = game.score[youKey] > game.score[opponentKey];
+  const youLost = game.score[youKey] < game.score[opponentKey];
+  const youTie = game.score[youKey] === game.score[opponentKey];
 
+  
+  
+  const { tieScreen } = JSON.parse(localStorage.getItem("featureFlags"));
   return (
+    
     <div className="page">
       {youWon && (
-        <Won you={game.score[youKey]} opponent={game.score[opponentKey]} />
+        <Won you={game.score[youKey]} opponent={game.score[opponentKey]} /> 
       )}
-      {!youWon && (
+      {youLost && (
         <Lost you={game.score[youKey]} opponent={game.score[opponentKey]} />
       )}
+       {youTie && tieScreen.value &&(
+         
+        <Tie you={game.score[youKey]} opponent={game.score[opponentKey]} />
+      )}
+      {youTie && !tieScreen.value &&(
+         
+         <Won you={game.score[youKey]} opponent={game.score[opponentKey]} />
+       )}
+
       <Link href="/" className="re-home link">
         Home
       </Link>
@@ -318,6 +340,7 @@ const ResultsPage = ({ gameId, playerId }) => {
 };
 
 const Won = ({ you, opponent }) => {
+  
   return (
     <div className="results">
       <img src={winning} style={{ width: "80%" }} />
@@ -336,5 +359,16 @@ const Lost = ({ you, opponent }) => {
     </div>
   );
 };
+const Tie = ({ you, opponent }) => {
+  
+  return (
+    <div className="results">
+      <img src={tie} style={{ width: "80%" }} />
+      <div className="re-text">TIE!!</div>
+      <QuickResults you={you} opponent={opponent} />
+    </div>
+  );
+};
+
 
 export default App;
