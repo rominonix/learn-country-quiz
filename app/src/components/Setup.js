@@ -1,31 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import "../App.css";
 import "../feature.js";
+import { Link } from "wouter";
 
 const Setup = () => {
-  const [featureFlags, setFeatureFlags] = useLocalStorage("featureFlags", {});
-  console.log(featureFlags); 
-  const changeToggleOff = () => {
-    featureFlags.minusScoring.value = false
-    setFeatureFlags(featureFlags)
-    console.log("off",featureFlags);
-  }
-  const changeToggleOn = () => {
-    featureFlags.minusScoring.value = true
-    setFeatureFlags(featureFlags)
-    console.log("on",featureFlags);
-  }
-
-  return(
-  <div>
+  return (
     <div>
-      <p>Minus Scoring</p>
-      <button onClick ={changeToggleOn}>On</button>
-      <button onClick ={changeToggleOff}>Off</button>
+      <FeatureToggle text="Minus-Scoring" flagKey="minusScoring" />
+      <FeatureToggle text="Tie-Screen" flagKey="tieScreen" />
+      <FeatureToggle text="Improved-Flag" flagKey="improvedFlag" />
+      <Link href="/" className="re-home link">
+        Go to App
+      </Link>
     </div>
-    
-  </div>
-  )
+  );
+};
+function FeatureToggle({ text, flagKey }) {
+  const [featureFlags, setFeatureFlags] = useLocalStorage("featureFlags", {});
+  console.log(featureFlags);
+  const changeToggleOff = (flagKey) => {
+    featureFlags[flagKey].value = false;
+
+    setFeatureFlags(featureFlags);
+    console.log("off", featureFlags);
+  };
+  const changeToggleOn = (flagKey) => {
+    featureFlags[flagKey].value = true;
+
+    setFeatureFlags(featureFlags);
+    console.log("on", featureFlags);
+  };
+  return (
+    <div>
+      <p>{text}</p>
+      <button onClick={() => changeToggleOn(flagKey)}>On</button>
+      <button onClick={() => changeToggleOff(flagKey)}>Off</button>
+    </div>
+  );
 }
 
 function useLocalStorage(key, initialValue) {
