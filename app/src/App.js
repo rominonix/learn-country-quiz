@@ -37,7 +37,7 @@ const analytics = getAnalytics(app);
 const db = getDatabase(app);
 
 function App() {
-  const { improvedHeader } = JSON.parse(localStorage.getItem("featureflag"));
+  const { improvedHeader } = JSON.parse(localStorage.getItem("featureFlags"));
 
   return (
     <div className="app">
@@ -206,6 +206,8 @@ const QuestionPage = ({ gameId, playerId }) => {
 
   const question = game.questions[`${game.currentQuestion}`];
 
+  const {minusScoring}= JSON.parse(localStorage.getItem("featureFlags"))
+  
   if (!question) return "Loading...";
 
   const answer = async (countryCode) => {
@@ -216,8 +218,11 @@ const QuestionPage = ({ gameId, playerId }) => {
       player: playerId,
       answer: countryCode,
     };
+
     if (countryCode == question.correct) {
       updates[`/games/${gameId}/score/${youKey}`] = game.score[youKey] + 1;
+    }else if (countryCode != question.correct && minusScoring.value === true){
+      updates[`/games/${gameId}/score/${youKey}`] = game.score[youKey] - 1
     }
     await update(ref(db), updates);
 
@@ -247,9 +252,9 @@ const QuestionPage = ({ gameId, playerId }) => {
           if (question.fastest && question.fastest.answer == countryCode) {
             correct = question.fastest.answer === question.correct;
             if (question.fastest.player === playerId) {
-              youOrOpponent = `YOU ${correct ? " +1" : ""}`;
+              youOrOpponent = `YOU ${correct ? " +1" : " "}`;
             } else {
-              youOrOpponent = `OPPONENT ${correct ? " +1" : ""}`;
+              youOrOpponent = `OPPONENT ${correct ? " +1" : " "}`;
             }
           }
           return (
