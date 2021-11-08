@@ -3,6 +3,10 @@ const featureFlags = {
     value: false,
     desription: "This is improvedScoring",
   },
+  minusScoring:{
+    value:false,
+    desription:"This is minusScoring"
+  },
   tieScreen: {
     value: false,
     desription: "This is tieScreen",
