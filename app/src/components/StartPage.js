@@ -35,7 +35,7 @@ const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvxyz", 5);
   
     const randomArrFlag = []
   
-    while (arrFlagsKeys.length > 0) {
+    while (arrFlagsKeys.length > 86) {
         let randomFlag = Math.floor(Math.random() * arrFlagsKeys.length)
         let pushRandomFlag = arrFlagsKeys.splice(randomFlag, 1)
         randomArrFlag.push(pushRandomFlag[0])	  

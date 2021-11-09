@@ -1,20 +1,19 @@
 const featureFlags = {
   tieScreen: {
     value: false,
-    desription: "This is tieScreen",
   },
-  minusScoring:{
-    value:false,
-    desription:"This is minusScoring"
+  minusScoring: {
+    value: false,
   },
   improvedHeader: {
     value: false,
-    desription: "this is Header", 
   },
   improvedFlag: {
     value: false,
-    description: "This shows more flags in random order"
-  }
+  },
+  randomQuestions: {
+    value: false,
+  },
 };
 
 Object.freeze(featureFlags);
@@ -28,4 +27,3 @@ if (localStorage.getItem("featureFlags")) {
 } else {
   localStorage.setItem("featureFlags", JSON.stringify(featureFlags));
 }
-
