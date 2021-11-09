@@ -95,9 +95,9 @@ const randomQuestionsGame = {
 
 console.log(randomQuestionsGame);
 
-let { randomQuestions } = JSON.parse(localStorage.getItem("featureFlags"));
-let randomQuestionsValue = randomQuestions.value;
 export const createGame = () => {
+  const { randomQuestions } = JSON.parse(localStorage.getItem("featureFlags"));
+  const randomQuestionsValue = randomQuestions.value;
   const generatedQuestions = randomQuestionsValue
     ? randomQuestionsGame
     : hardCodedQuestions;
