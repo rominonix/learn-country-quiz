@@ -61,7 +61,7 @@ export const createRandomGame = () => {
 		}
 	  }
 	  
-	  console.log("random", randomCountry);
+	//   console.log("random", randomCountry);
 	  const randomQuestionsGame = {
 		1: {
 		  alternatives: {
