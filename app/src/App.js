@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 
-import {  Route,  } from "wouter";
+import { Route } from "wouter";
 import { customAlphabet } from "nanoid";
 import "./App.css";
-import StartPage from './components/StartPage'
-import GamePage from './components/GamePage'
+import StartPage from "./components/StartPage";
+import ConsentCookies from "./components/CookieConsent";
+import GamePage from "./components/GamePage";
 import Setup from "./components/Setup";
 import "./feature.js";
-import {db} from './init'
+import { db } from "./init";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -19,7 +20,6 @@ const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvxyz", 5);
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
-
 function App() {
   const { improvedHeader } = JSON.parse(localStorage.getItem("featureFlags"));
   return (
@@ -29,21 +29,21 @@ function App() {
       </div>
       <div className="middle">
         <Route path="/">
+      <ConsentCookies />
           <StartPage />
         </Route>
         <Route path="/game/:gameId/:playerId">
           {(params) => {
             return (
               <GamePage gameId={params.gameId} playerId={params.playerId} />
-              );
-            }}
+            );
+          }}
         </Route>
         <Route path="/setup">
-          <Setup />  
+          <Setup />
         </Route>
-      </div>         
-      <div className="footer">
       </div>
+      <div className="footer"></div>
     </div>
   );
 }
