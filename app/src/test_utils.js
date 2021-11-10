@@ -8,12 +8,23 @@ describe("createRandomGame", () => {
   it("no questions ask about same flag", () => {
     const result = createRandomGame();
     let arr = Object.entries(result)
-    console.log("result:",arr);
     const correctArray= []
     for (let i=0;i<arr.length;i++) {
       correctArray.push(arr[i][1].correct)
     }
-    console.log("correctArray",correctArray);
     assert.equal(hasDuplicates(correctArray),false);
+  });
+  it("no answers are not same for each question", () => {
+    const result = createRandomGame();
+    let arrAlternatives = Object.values(result)
+    const correctArray = []
+    for (let i=0;i<arrAlternatives.length;i++) {
+      let newResult= Object.values(arrAlternatives[i].alternatives)
+      correctArray.push(newResult)
+    }
+    console.log("newResult",correctArray);
+    for (let j = 0; j < correctArray.length; j++) {
+      assert.equal(hasDuplicates(correctArray[j]),false);
+    }
   });
 });
