@@ -4,7 +4,7 @@ import { Route } from "wouter";
 import { customAlphabet } from "nanoid";
 import "./App.css";
 import StartPage from "./components/StartPage";
-import ConsentCookies from "./components/CookieConsent";
+// import ConsentCookies from "./components/CookieConsent";
 import GamePage from "./components/GamePage";
 import Setup from "./components/Setup";
 import "./feature.js";
@@ -29,7 +29,7 @@ function App() {
       </div>
       <div className="middle">
         <Route path="/">
-      <ConsentCookies />
+      {/* <ConsentCookies /> */}
           <StartPage />
         </Route>
         <Route path="/game/:gameId/:playerId">
