@@ -10,6 +10,7 @@ import { ref, update } from "firebase/database";
 import { useObject } from "react-firebase-hooks/database";
 import { db } from "../init";
 import Setup from "./Setup";
+import CookieConsent from "./CookieConsent";
 
 const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvxyz", 5);
 
@@ -18,6 +19,8 @@ const StartPage = () => {
   const [location, setLocation] = useLocation();
   const { improvedFlag } = JSON.parse(localStorage.getItem("featureFlags"));
 
+  const allowCookie = JSON.parse(localStorage.getItem("allowCookie"));
+  
   const flags = Object.keys(countries).reduce(
     (prev, current) => ({
       ...prev,
@@ -62,82 +65,92 @@ const StartPage = () => {
   };
 
   return (
-    
-    <div className="page">
-      {!improvedFlag.value ? (
-        <div className="st-flags">
-          <div className="f32">
-            <div className={`flag aze`}></div>
-          </div>
-          <div className="f32">
-            <div className={`flag bih`}></div>
-          </div>
-          <div className="f32">
-            <div className={`flag brb`}></div>
-          </div>
-          <div className="f32">
-            <div className={`flag swe`}></div>
-          </div>
-          <div className="f32">
-            <div className={`flag bgd`}></div>
-          </div>
-          <div className="f32">
-            <div className={`flag bel`}></div>
-          </div>
-          <div className="f32">
-            <div className={`flag bfa`}></div>
-          </div>
-          <div className="f32">
-            <div className={`flag bgr`}></div>
-          </div>
-          <div className="f32">
-            <div className={`flag bhr`}></div>
-          </div>
-          <div className="f32">
-            <div className={`flag bdi`}></div>
-          </div>
-          <div className="f32">
-            <div className={`flag ben`}></div>
-          </div>
-          <div className="f32">
-            <div className={`flag bmu`}></div>
-          </div>
-          <div className="f32">
-            <div className={`flag brn`}></div>
-          </div>
-          <div className="f32">
-            <div className={`flag bol`}></div>
-          </div>
-          <div className="f32">
-            <div className={`flag bra`}></div>
-          </div>
-          <div className="f32">
-            <div className={`flag bhs`}></div>
-          </div>
-          <div className="f32">
-            <div className={`flag btn`}></div>
-          </div>
-          <div className="f32">
-            <div className={`flag fra`}></div>
-          </div>
-          <div className="f32">
-            <div className={`flag bwa`}></div>
-          </div>
-        </div>
-      ) : (
-        <div className="st-flags">
-          {randomArrFlag.map((flagKey) => (
-            <div className="f32" key={flagKey}>
-              <div className={`flag ${flagKey}`}></div>
-            </div>
-          ))}
-        </div>
-      )}
+    <div>
 
-      <div className="button btn-square" onClick={play}>
-        Play
+
+      <div className="page">
+        {!improvedFlag.value ? (
+          <div className="st-flags">
+            <div className="f32">
+              <div className={`flag aze`}></div>
+            </div>
+            <div className="f32">
+              <div className={`flag bih`}></div>
+            </div>
+            <div className="f32">
+              <div className={`flag brb`}></div>
+            </div>
+            <div className="f32">
+              <div className={`flag swe`}></div>
+            </div>
+            <div className="f32">
+              <div className={`flag bgd`}></div>
+            </div>
+            <div className="f32">
+              <div className={`flag bel`}></div>
+            </div>
+            <div className="f32">
+              <div className={`flag bfa`}></div>
+            </div>
+            <div className="f32">
+              <div className={`flag bgr`}></div>
+            </div>
+            <div className="f32">
+              <div className={`flag bhr`}></div>
+            </div>
+            <div className="f32">
+              <div className={`flag bdi`}></div>
+            </div>
+            <div className="f32">
+              <div className={`flag ben`}></div>
+            </div>
+            <div className="f32">
+              <div className={`flag bmu`}></div>
+            </div>
+            <div className="f32">
+              <div className={`flag brn`}></div>
+            </div>
+            <div className="f32">
+              <div className={`flag bol`}></div>
+            </div>
+            <div className="f32">
+              <div className={`flag bra`}></div>
+            </div>
+            <div className="f32">
+              <div className={`flag bhs`}></div>
+            </div>
+            <div className="f32">
+              <div className={`flag btn`}></div>
+            </div>
+            <div className="f32">
+              <div className={`flag fra`}></div>
+            </div>
+            <div className="f32">
+              <div className={`flag bwa`}></div>
+            </div>
+          </div>
+        ) : (
+          <div className="st-flags">
+            {randomArrFlag.map((flagKey) => (
+              <div className="f32" key={flagKey}>
+                <div className={`flag ${flagKey}`}></div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div className="button btn-square" onClick={play}>
+          Play
+        </div>
+
       </div>
+      
+      {allowCookie == null ?  <CookieConsent /> : null}
+      
+
     </div>
+
+
   );
 };
 

@@ -1,25 +1,27 @@
-// import React from "react";
-// import "../App.css";
-// import CookieConsent, { Cookies } from "react-cookie-consent";
 
-//  Cookies.set("test", "nice")
-// const ConsentCookies = () => {
-//   return (
-//     <div className="Cookie-header">
-//       <CookieConsent
-//         onAccept={() => {
-//           alert("yay!");
-//         }}
-//         debug={true}
-//         enableDeclineButton
-//         declineButtonText="Decline (optional)"
-//         onDecline={() => {
-//           alert("nay!");
-//         }}
-//       />
-       
-//     </div>
-//   );
-// };
+import React from "react";
+import "../App.css";
+import { Link} from "wouter";
+const CookieConsent = () => {
+    const allowCookie=()=>{
+        localStorage.setItem("allowCookie",JSON.stringify(true));
+        location.reload()
+    }
+    const denyCookie=()=>{
+        localStorage.setItem("allowCookie",JSON.stringify(false))
+        location.reload()
+    }
 
-// export default ConsentCookies
+
+    return (
+        <div className="cookie">
+            <p>About cookies on this site
+            We use cookies to collect and analyse information on site performance and usage, to provide social media features and to enhance and customise content and advertisements.</p>
+            <button onClick={denyCookie}>Deny cookies</button>
+            <button onClick={allowCookie}>Allow all cookies</button>
+            <Link href="/cookie-list" className="re-home link">Read more</Link>
+        </div>
+    );
+};
+
+export default CookieConsent

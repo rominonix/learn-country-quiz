@@ -4,7 +4,7 @@ import { Route } from "wouter";
 import { customAlphabet } from "nanoid";
 import "./App.css";
 import StartPage from "./components/StartPage";
-// import ConsentCookies from "./components/CookieConsent";
+import CookieConsent from "./components/CookieConsent";
 import GamePage from "./components/GamePage";
 import Setup from "./components/Setup";
 import "./feature.js";
@@ -14,6 +14,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { ref, getDatabase, set, update } from "firebase/database";
 import { useObject } from "react-firebase-hooks/database";
+import CookieList from "./components/CookieList";
 
 const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvxyz", 5);
 
@@ -27,11 +28,10 @@ function App() {
       <div className="header">
         {improvedHeader.value ? "COUNTRY FLAG QUIZZ" : "THE FLAG GAME"}
       </div>
-      <div className="middle">
-        <Route path="/">
-      {/* <ConsentCookies /> */}
-          <StartPage />
-        </Route>
+      <div className="middle"> 
+          <Route path="/" >
+            <StartPage />
+          </Route>
         <Route path="/game/:gameId/:playerId">
           {(params) => {
             return (
@@ -41,6 +41,9 @@ function App() {
         </Route>
         <Route path="/setup">
           <Setup />
+        </Route>
+        <Route path="/cookie-list">
+          <CookieList />
         </Route>
       </div>
       <div className="footer"></div>
