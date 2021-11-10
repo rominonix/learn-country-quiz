@@ -24,6 +24,6 @@ Go through the GDPR slides and recording from Friday 5 Nov. The main points are:
  - Maintain a sub processor list
 
 Don't forget to [put a green checkmark](README.md) before you continue to the next task!
-
+.
 [Continue!](6-google-analytics.md)
 
