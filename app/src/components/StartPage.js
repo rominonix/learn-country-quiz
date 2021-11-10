@@ -62,6 +62,7 @@ const StartPage = () => {
   };
 
   return (
+    
     <div className="page">
       {!improvedFlag.value ? (
         <div className="st-flags">
