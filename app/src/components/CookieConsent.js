@@ -19,8 +19,9 @@ const CookieConsent = () => {
         <div className="cookie">
             <p>About cookies on this site
             We use cookies to collect and analyse information on site performance and usage, to provide social media features and to enhance and customise content and advertisements.</p>
-            <button onClick={denyCookie}>Deny cookies</button>
-            <button onClick={allowCookie}>Allow all cookies</button>
+            <button onClick={denyCookie} className='red-btn'>Deny cookies</button>
+            <button onClick={allowCookie} className='blue-btn'>Allow all cookies</button>
+            <br/>
             <Link href="/cookie-list" className="re-home link">Read more</Link>
         </div>
     );
