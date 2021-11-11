@@ -2,6 +2,8 @@
 import React from "react";
 import "../App.css";
 import { Link} from "wouter";
+
+
 const CookieConsent = () => {
     const allowCookie=()=>{
         localStorage.setItem("allowCookie",JSON.stringify(true));

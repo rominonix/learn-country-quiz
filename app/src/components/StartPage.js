@@ -11,6 +11,8 @@ import { useObject } from "react-firebase-hooks/database";
 import { db } from "../init";
 import Setup from "./Setup";
 import CookieConsent from "./CookieConsent";
+import { getAnalytics ,logEvent} from "firebase/analytics";
+import {app} from '../init'
 
 const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvxyz", 5);
 
@@ -20,7 +22,16 @@ const StartPage = () => {
   const { improvedFlag } = JSON.parse(localStorage.getItem("featureFlags"));
 
   const allowCookie = JSON.parse(localStorage.getItem("allowCookie"));
+ 
+  let analytics = null;
   
+  if (allowCookie) {
+    analytics = getAnalytics(app)
+  } 
+  if (analytics) {
+    logEvent(analytics, 'start-page-loaded');
+  }
+
   const flags = Object.keys(countries).reduce(
     (prev, current) => ({
       ...prev,
