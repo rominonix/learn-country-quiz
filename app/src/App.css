@@ -1,8 +1,8 @@
 .app {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .header {
@@ -142,15 +142,9 @@
 .re-home {
   margin-top: 2rem;
 }
-/* .route{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-} */
 .cookie {
   text-align: center;
   margin-top: 50px;
-  width: 50%;
   background-color: #222;
   padding: 20px;
   color: white;
@@ -169,17 +163,31 @@ Button {
 }
 .blue-btn {
   box-shadow: inset 0px -3px 7px 0px #29bbff;
-  background: linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
-  background-color: #2dabf9;
+  background-color: #0688fa;
 }
 .red-btn {
-  box-shadow: inset 0px 34px 0px -15px #b54b3a;
+  box-shadow: inset 0px -3px 7px 0px #b54b3a;
   background-color: #a73f2d;
 }
-Button:hover > .red-btn {
-  background-color: #b34332;
+.red-btn:hover {
+  background-color: coral;
 }
-Button:hover > .blue-btn{
-  background:linear-gradient(to bottom, #0688fa 5%, #2dabf9 100%);
-	background-color:#0688fa;
+.blue-btn:hover {
+  background-color: #29bbff;
+  
+}
+.setup-btn1 {
+  background-color: #b13434;
+}
+.setup-btn2 {
+  background-color: #0688fa;
+}
+.setup-btn1:hover {
+  background-color: coral;
+}
+.setup-btn2:hover {
+  background-color:#29bbff ;
+}
+.setup-btn1:active {
+  background-color: blue;
 }

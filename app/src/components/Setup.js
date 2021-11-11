@@ -33,8 +33,10 @@ function FeatureToggle({ text, flagKey }) {
   return (
     <div>
       <p>{text}</p>
-      <button onClick={() => changeToggleOn(flagKey)}>On</button>
-      <button onClick={() => changeToggleOff(flagKey)}>Off</button>
+      
+        <button onClick={() => changeToggleOn(flagKey)} className="setup-btn1">On</button>
+        <button onClick={() => changeToggleOff(flagKey)} className="setup-btn2">Off</button>
+      
     </div>
   );
 }
